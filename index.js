@@ -8,9 +8,10 @@ import {rootNavigation} from './src/Navigation/rootNavigation';
 
 const store = configureStore();
 let Navigation = createAppContainer(rootNavigation);
+
 const myApp = () => (
-    <Provider store={store}>
-      <Navigation/>
-    </Provider>
+  <Provider store={store}>
+    <Navigation />
+  </Provider>
 );
 AppRegistry.registerComponent(appName, () => myApp);
