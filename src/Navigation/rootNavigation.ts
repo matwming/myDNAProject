@@ -21,6 +21,6 @@ export const rootNavigation = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Settings',
+    initialRouteName: 'Home',
   },
 );
