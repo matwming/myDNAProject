@@ -1,3 +1,6 @@
+/*
+ * Start of types definition
+ * */
 export interface IRobotStatus extends IPosition {
   isPlaced: boolean;
 }
@@ -24,14 +27,22 @@ export enum RobotActionTypes {
   Move = 'Move',
   Place = 'Place',
 }
+/*
+ * End of types definition
+ * */
 
+/*
+ * This is the initial status for the robot
+ * */
 const robotStatus: IRobotStatus = {
   currentHorizontalPosition: 0,
   currentVerticalPosition: 0,
   isPlaced: false,
 };
 
-/*robot change movement action*/
+/*This is a robot change movement action.
+ * It is used to move the robot by one well
+ * */
 export const moveRobot = (direction: IMovementDirections): MoveAction => {
   return {
     type: RobotActionTypes.Move,
@@ -39,12 +50,20 @@ export const moveRobot = (direction: IMovementDirections): MoveAction => {
   };
 };
 
+/*
+ * This is a place robot action.
+ * It is used to place a robot on the Well container.
+ * */
 export const PlaceRobot = (payload: IPosition): PlaceAction => {
   return {
     type: RobotActionTypes.Place,
     payload,
   };
 };
+
+/*
+This is robot reducer
+* */
 export const robotReducer = (
   state: IRobotStatus = robotStatus,
   action: RobotActions,

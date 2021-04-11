@@ -19,11 +19,14 @@ const Drop = ({
   isPlaced,
 }: IDropMovement) => {
   const dispatch = useDispatch();
+
   const onDropHandler = () => {
     const currentRobotPosition = `${String(currentHorizontalPosition)},${String(
       currentVerticalPosition,
     )}`;
+
     const currentWellStatus: wellTypes = allWellStatus[currentRobotPosition];
+
     if (currentWellStatus === 'FULL') {
       return MyAlert({
         title: 'Ops',
@@ -31,8 +34,10 @@ const Drop = ({
         hasOK: true,
       });
     }
+
     return dispatch(FillTargetWell(currentRobotPosition));
   };
+
   return (
     <View style={{marginTop: 5}}>
       <SubTitle>3. Drop command:</SubTitle>

@@ -16,10 +16,13 @@ const Report = ({
   const currentRobotPosition = `${String(currentHorizontalPosition)},${String(
     currentVerticalPosition,
   )}`;
+
   const WellBelowStatus = allWellStatus[currentRobotPosition];
+
   const totalFilledWells = Object.values(allWellStatus).filter(
     status => status === 'FULL',
   ).length;
+
   const onGetReportHandler = () => {
     return MyAlert({
       title: 'Robot Report Result',
@@ -31,6 +34,7 @@ const Report = ({
             `,
     });
   };
+
   return (
     <View style={{marginTop: 5}}>
       <SubTitle>5. Report command:</SubTitle>

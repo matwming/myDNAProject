@@ -1,3 +1,10 @@
+/*
+ * This the reducer file for well container. It includes interfaces, types, actions and a reducer function.
+ * */
+
+/*
+Start of type definition: interfaces/types
+* */
 export interface IWellContainerStatus {
   verticalUnits: number;
   horizontalUnits: number;
@@ -28,6 +35,14 @@ export interface InitWell {
   horizontalUnits: number;
 }
 
+export enum WellContainerTypes {
+  InitWell = 'InitWell',
+  FillWell = 'FillWell',
+}
+/*
+End of types definition
+* */
+
 const WellContainerStatus: IWellContainerStatus = {
   verticalUnits: 5,
   horizontalUnits: 5,
@@ -36,10 +51,10 @@ const WellContainerStatus: IWellContainerStatus = {
   },
 };
 
-export enum WellContainerTypes {
-  InitWell = 'InitWell',
-  FillWell = 'FillWell',
-}
+/*
+ * This is an GetWellInitialStatus action. It is used to set the initial status of the Well container.
+ * like how many horizontal/vertical units the Well container should have and which Wells are filled.
+ * */
 
 export const GetWellInitialStatus = (
   payload: InitWell,
@@ -54,12 +69,21 @@ export const GetWellInitialStatus = (
   };
 };
 
+/*
+This is a FillTargetWell action.
+It is used to Fill the target Well to change the status from EMPTY to FULL.
+* */
 export const FillTargetWell = (targetWell: string): FillTargetWellAction => {
   return {
     type: WellContainerTypes.FillWell,
     targetWell,
   };
 };
+
+/*
+ * This is used to build the initial FULL/EMPTY status of all the Wells
+ * */
+
 const getAllWellInitialStatus = (
   verticalUnits: number,
   horizontalUnits: number,
@@ -76,13 +100,16 @@ const getAllWellInitialStatus = (
   return result;
 };
 
+/*
+ * This is well container reducer.
+ * */
 export const wellContainerReducer = (
   state: IWellContainerStatus = WellContainerStatus,
   action: WellContainerActions,
 ) => {
   switch (action.type) {
     case WellContainerTypes.InitWell:
-      console.log('action', action);
+      //console.log('action', action);
       const copiedStatus = {...state};
       copiedStatus.verticalUnits = action.payload.verticalUnits;
       copiedStatus.horizontalUnits = action.payload.horizontalUnits;
@@ -91,7 +118,7 @@ export const wellContainerReducer = (
         action.payload.horizontalUnits,
         action.additionalInfo,
       );
-      console.log('wellStatusResult', wellStatusResult);
+      //console.log('wellStatusResult', wellStatusResult);
       copiedStatus.allWellStatus = {...wellStatusResult};
       return copiedStatus;
     case WellContainerTypes.FillWell:

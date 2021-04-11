@@ -22,8 +22,10 @@ const Detect = ({
   const currentRobotPosition = `${String(currentHorizontalPosition)},${String(
     currentVerticalPosition,
   )}`;
+
   const currentWellStatus: wellTypes = allWellStatus[currentRobotPosition];
   // console.log('currentWellStatus', currentWellStatus);
+
   return (
     <View>
       <SubTitle>2. Detect command:</SubTitle>

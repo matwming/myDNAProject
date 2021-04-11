@@ -22,6 +22,21 @@ import {IDirection} from '../../components/UIMovementController/Place';
 import getRandomWell from '../../utils/getRandomWells/getRandomWells';
 import {ToggleWellLabels} from '../../store/reducers/appSettings/appSettings';
 
+/*
+ * This is Settings Screen. There are three settings you can make in this screen.
+ *
+ * 1.0 Change Horizontal/Vertical units.
+ *  1.1 The default Horizontal/Vertical units are 5*5. You can change the default settings here.
+ *       The Well Container is dynamically built by the settings or an api.
+ *
+ * 2.0 Randomly fill the Wells (up to 3).
+ *  2.1 This is used to randomly fill the Wells.You can randomly fill 1/2/3 Wells from a picker.
+ *
+ * 3.0 Toggle the Well labels.
+ *  3.1: This is used to show/hide x,y for every well on the top of the Well.
+ *
+ * */
+
 const Settings = () => {
   const onPickerChangeHandler = (direction: IDirection, value: string) => {
     if (direction === 'horizontal') {
@@ -73,7 +88,8 @@ const Settings = () => {
     setWellFill(() => randomlyFillWellLocation as string[]);
   };
 
-  console.log('random well', wellsToFill);
+  //console.log('random well', wellsToFill);
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -85,6 +101,7 @@ const Settings = () => {
             Feel free to change the settings for our app.
           </Text>
 
+          {/*This is Setting 1 */}
           <SubTitle style={{marginTop: 10}}>
             1. Change Horizontal/Vertical Units for the Well (5 * 5)
           </SubTitle>
@@ -123,6 +140,7 @@ const Settings = () => {
             }}
           />
 
+          {/*This is Setting 2 */}
           <SubTitle style={{marginTop: 10}}>
             2. Fills Wells randomly: please select how many wells you want to
             randomly fill (from 1-3)
@@ -152,6 +170,7 @@ const Settings = () => {
             }}
           />
 
+          {/*This is Setting 3 */}
           <SubTitle style={{marginTop: 10}}>
             3. Toggle the button to show Well labels (show 'x,y' for Wells)
           </SubTitle>

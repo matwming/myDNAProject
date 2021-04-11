@@ -28,6 +28,7 @@ const Move = ({
   horizontalUnits,
 }: IRobotMove) => {
   const dispatch = useDispatch();
+
   const OnMoveDirectionChangeHandler = (
     direction: IMovementDirections,
   ): void => {
@@ -41,7 +42,7 @@ const Move = ({
       horizontalUnits - (currentHorizontalPosition as number) - 1;
     switch (true) {
       case direction === 'N':
-        console.log(currentVerticalPosition, verticalAvailableMovements);
+        //console.log(currentVerticalPosition, verticalAvailableMovements);
         if (horizontalAvailableMovements === 0) return false;
         return true;
       case direction === 'S':

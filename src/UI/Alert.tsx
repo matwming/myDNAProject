@@ -1,5 +1,9 @@
 import {Alert} from 'react-native';
 
+/*
+ * This is a custom built UI component,MyAlert.
+ * */
+
 const MyAlert = ({
   title,
   msg,

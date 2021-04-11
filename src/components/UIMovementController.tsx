@@ -9,15 +9,23 @@ import {useSelector} from 'react-redux';
 import {GlobalState} from '../store/reducers/rootReducers';
 import {MainView, TextElement} from '../UI/Other';
 
+/*
+ * This is UIMovementController component.
+ * It has five commands: PLACE DETECT DROP MOVE and REPORT.
+ * Each command has its own component. They are all defined in UIMovementController folder.
+ * */
+
 const UIMovementController = () => {
   const {
     currentHorizontalPosition,
     currentVerticalPosition,
     isPlaced,
   } = useSelector((state: GlobalState) => state?.robotStatus);
+
   const {allWellStatus, verticalUnits, horizontalUnits} = useSelector(
     (state: GlobalState) => state?.wellContainerStatus,
   );
+
   return (
     <View style={{margin: 5}}>
       <MainView>

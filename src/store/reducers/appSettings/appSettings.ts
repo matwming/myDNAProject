@@ -1,3 +1,6 @@
+/*
+ * Start of types definition
+ * */
 export interface IAppSettings {
   isShowWellLabels: boolean;
 }
@@ -15,14 +18,23 @@ export type AppSettingsActions = ToggleWellLabelsAction;
 const appSettings: IAppSettings = {
   isShowWellLabels: false,
 };
+/*
+ * End of types definition
+ * */
 
-//Actions
+/*
+ * This is a ToggleWellLabels action.
+ * It is used to show/hide x,y for each well.
+ * */
 export const ToggleWellLabels = (): ToggleWellLabelsAction => {
   return {
     type: AppSettingsActionTypes.ChangeWellLabelsStatus,
   };
 };
-//Reducer
+
+/*
+ * This is appSettingsReducer
+ * */
 export const appSettingsReducer = (
   state = appSettings,
   action: AppSettingsActions,

@@ -16,6 +16,7 @@ export type IDirection = 'vertical' | 'horizontal';
 
 const Place = ({isPlaced}: {isPlaced?: boolean}) => {
   const dispatch = useDispatch();
+
   const {verticalUnits, horizontalUnits} = useSelector(
     (state: GlobalState) => state?.wellContainerStatus,
   );
@@ -43,7 +44,7 @@ const Place = ({isPlaced}: {isPlaced?: boolean}) => {
   };
 
   const onPlaceHandler = () => {
-    console.log('currentposition', currentPosition);
+    //console.log('currentposition', currentPosition);
     if (
       currentPosition.currentVerticalPosition === undefined ||
       currentPosition.currentHorizontalPosition === undefined
@@ -56,6 +57,7 @@ const Place = ({isPlaced}: {isPlaced?: boolean}) => {
     }
     return dispatch(PlaceRobot(currentPosition));
   };
+
   return (
     <View style={{marginTop: 5}}>
       <SubTitle>1. Place command:</SubTitle>

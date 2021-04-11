@@ -30,6 +30,13 @@ const WellLabels = styled.Text`
     isShowWellLabels ? 'flex' : 'none'};
 `;
 
+/*
+ * This is the UIWellContainer component.
+ * It receive two parameters as defined in the interface:
+ *   verticalUnits and horizontalUnits.
+ * This component use verticalUnits and horizontalUnits to dynamically build the Well Container.
+ * */
+
 const UIWellContainer = ({
   verticalUnits,
   horizontalUnits,
@@ -42,16 +49,25 @@ const UIWellContainer = ({
     currentVerticalPosition,
     isPlaced,
   } = useSelector((state: GlobalState) => state?.robotStatus);
+
   const currentRobotPosition = `${String(
     currentHorizontalPosition,
   )},${currentVerticalPosition}`;
+
   const {allWellStatus} = useSelector(
     (state: GlobalState) => state.wellContainerStatus,
   );
+
   const {isShowWellLabels} = useSelector(
     (state: GlobalState) => state.appSettings,
   );
+
   //console.log('robotPosition-place-component', currentRobotPosition);
+
+  /*
+   * HStack is used to build the horizontal Wells
+   * */
+
   const HStack = ({horizontalPosition}: {horizontalPosition: number}) => {
     return (
       <View style={{flexDirection: 'row', marginTop: 5}}>
@@ -68,22 +84,24 @@ const UIWellContainer = ({
                   ? 'lightblue'
                   : 'white'
               }>
-              <WellLabels isShowWellLabels={isShowWellLabels}>
-                {horizontalPosition},{index}
-              </WellLabels>
-              <Image
-                source={require('../robot.jpeg')}
-                style={{
-                  height: 35,
-                  width: 35,
-                  marginTop: 7,
-                  marginLeft: 9,
-                  display:
-                    currentRobotPosition === currentWellPosition && isPlaced
-                      ? 'flex'
-                      : 'none',
-                }}
-              />
+              <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <WellLabels isShowWellLabels={isShowWellLabels}>
+                  {horizontalPosition},{index}
+                </WellLabels>
+                <Image
+                  source={require('../robot.jpeg')}
+                  style={{
+                    height: 35,
+                    width: 35,
+                    marginTop: 1,
+                    marginBottom: 10,
+                    display:
+                      currentRobotPosition === currentWellPosition && isPlaced
+                        ? 'flex'
+                        : 'none',
+                  }}
+                />
+              </View>
             </Well>
           );
         })}
