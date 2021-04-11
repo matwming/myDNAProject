@@ -53,7 +53,7 @@ describe('test robot reducer', () => {
     //Assert
     expect(robotReducer(state, actionToNorth())).toEqual({
       currentHorizontalPosition: 4,
-      currentVerticalPosition: 0,
+      currentVerticalPosition: 3,
       isPlaced: false,
     });
   });
