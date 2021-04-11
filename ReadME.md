@@ -49,7 +49,7 @@ It has isShowWellLabels. In the future, it could add more status like, isDarkMod
 
 - jest: There are unit tests for redux reducers and utility functions and are all passed.
 
-# 3. What are missing in this app?
+# 3. What features are missing in this app?
 1. lack of end-to-end testing with Appium.
 
 e2e is extremely important for any app. 
@@ -65,12 +65,26 @@ a11y is very important for people with impaired vision.
 
 Unfortunately, I do not have enough time to do the implementation details but these features can be added in the future.
 
-# What tools I used during developing?
+# 4. What tools do I use during developing?
 - webstorm: I like jetbrains IDE
 - react native debugger: it is convenient to debug the app. For more info please check out this link: [https://github.com/jhen0409/react-native-debugger]
 
-# Finally, how to run the app?
-- for ios: git clone this repo and go to the root folder and follow these steps:
+# 5. What branches do I have in git?
+There are four kinds of branches in this git repo.
+- release/****:
+This is used to manage the release versions of the app. For each new release, it will be tagged with a new release number in this branch.
+
+- feature/****:
+This is used to add new features to the app by creating a new branch with a description or work item number. Once the feature is finished and passed unit tests. It will be reviewed by other devs and ready to be merged into dev branch.
+
+- bugfix/****:
+This is used to fix a bug in this app by creating a bugfix branch with a description or work item number. Once the bug is fixed and passed all unit tests, it will be reviewed by other devs and ready to be merged into dev branch.
+
+- dev:
+This is a development branch. It will merge bugfix or feature branch pull requests. Once all PRs are merged, testers will do a regression test on it. If it passed the regression test then it is ready to be merged into release branch and waiting to be release.
+
+# 6. Finally, how to run the app?
+- For ios: git clone this repo and go to the root folder and follow these steps:
 1. npm i: install all packages
 2. cd ios: go to ios folder
 3. pod install: install pods for ios app
@@ -87,4 +101,7 @@ pod install
 npx react-native run-ios
 ```
 
-For android:
+- For android:
+
+Please refer to the follow link to first setup your android environment.
+[https://reactnative.dev/docs/environment-setup]
