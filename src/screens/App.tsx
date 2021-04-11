@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -22,6 +22,9 @@ import UIMovementController from '../components/UIMovementController';
 import useDetectOrientationHook, {
   IDeviceMode,
 } from '../utils/useDetectOrientationHook';
+import {useDispatch, useSelector} from 'react-redux';
+import {GetWellInitialStatus} from '../store/reducers/wellContainerReducer/wellContainerReducer';
+import {GlobalState} from '../store/reducers/rootReducers';
 
 const Section: React.FC<{
   title: string;
@@ -53,13 +56,27 @@ const Section: React.FC<{
 };
 
 const App = () => {
+  const dispatch = useDispatch();
+  const {verticalUnits, horizontalUnits} = useSelector(
+    (state: GlobalState) => state?.wellContainerStatus,
+  );
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const deviceOrientationMode = useDetectOrientationHook();
   console.log('device mode', deviceOrientationMode);
-
+  useEffect(() => {
+    const wellInitialStatus = {
+      verticalUnits: 5,
+      horizontalUnits: 5,
+    };
+    const additionalWellStatus = {
+      '1,1': 'FULL',
+      '2,2': 'FULL',
+    };
+    dispatch(GetWellInitialStatus(wellInitialStatus, additionalWellStatus));
+  }, []);
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -70,7 +87,10 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <UIWellContainer verticalUnits={5} horizontalUnits={5} />
+          <UIWellContainer
+            verticalUnits={verticalUnits}
+            horizontalUnits={horizontalUnits}
+          />
           <UIMovementController />
         </View>
       </ScrollView>
