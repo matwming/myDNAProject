@@ -1,7 +1,8 @@
-import {Button, Text, View} from 'react-native';
+import {Button, View} from 'react-native';
 import React from 'react';
 import {IMovement} from './Detect';
 import MyAlert from '../../UI/Alert';
+import {SubTitle} from '../../UI/Other';
 
 export interface IReport extends IMovement {
   isPlaced: boolean;
@@ -31,8 +32,8 @@ const Report = ({
     });
   };
   return (
-    <View>
-      <Text>this is a report component</Text>
+    <View style={{marginTop: 5}}>
+      <SubTitle>5. Report command:</SubTitle>
       <Button
         title={'Report'}
         onPress={() => onGetReportHandler()}

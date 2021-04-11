@@ -1,4 +1,4 @@
-import {View, Text, Button, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import MoveDirection from './MoveDirection';
 // @ts-ignore
@@ -9,10 +9,10 @@ import {
   IPosition,
   moveRobot,
 } from '../../../store/reducers/robotReducer/robotReducer';
-import {wellTypes} from '../../../store/reducers/wellContainerReducer/wellContainerReducer';
+import {SubTitle} from '../../../UI/Other';
 
 const TopBtnView = styled.View`
-  margin-left: 40px;
+  margin-left: 60px;
 `;
 
 export interface IRobotMove extends IPosition {
@@ -59,8 +59,8 @@ const Move = ({
   };
 
   return (
-    <View>
-      <Text> this is a move comoponent</Text>
+    <View style={{marginTop: 5}}>
+      <SubTitle>4. Move command:</SubTitle>
       <View>
         <View style={{flexDirection: 'row'}}>
           <TopBtnView>

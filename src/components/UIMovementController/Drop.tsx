@@ -1,6 +1,5 @@
-import {View, Text, Button} from 'react-native';
+import {View, Button} from 'react-native';
 import React from 'react';
-import {IPosition} from '../../store/reducers/robotReducer/robotReducer';
 import {IMovement} from './Detect';
 import {
   FillTargetWell,
@@ -8,6 +7,7 @@ import {
 } from '../../store/reducers/wellContainerReducer/wellContainerReducer';
 import {useDispatch} from 'react-redux';
 import MyAlert from '../../UI/Alert';
+import {SubTitle} from '../../UI/Other';
 
 export interface IDropMovement extends IMovement {
   isPlaced: boolean;
@@ -34,8 +34,8 @@ const Drop = ({
     return dispatch(FillTargetWell(currentRobotPosition));
   };
   return (
-    <View>
-      <Text>this is a drop component</Text>
+    <View style={{marginTop: 5}}>
+      <SubTitle>3. Drop command:</SubTitle>
       <Button
         title={'Drop'}
         onPress={() => onDropHandler()}

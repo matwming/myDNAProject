@@ -1,13 +1,9 @@
-import {Button, Text, View} from 'react-native';
+import {Button, View} from 'react-native';
 import React from 'react';
-import {useSelector} from 'react-redux';
-import {
-  IWellContainerStatus,
-  wellTypes,
-} from '../../store/reducers/wellContainerReducer/wellContainerReducer';
+import {wellTypes} from '../../store/reducers/wellContainerReducer/wellContainerReducer';
 import MyAlert from '../../UI/Alert';
-import {GlobalState} from '../../store/reducers/rootReducers';
 import {IPosition} from '../../store/reducers/robotReducer/robotReducer';
+import {SubTitle} from '../../UI/Other';
 
 export interface IMovement extends IPosition {
   allWellStatus: {
@@ -30,7 +26,7 @@ const Detect = ({
   // console.log('currentWellStatus', currentWellStatus);
   return (
     <View>
-      <Text>this is a detect component</Text>
+      <SubTitle>2. Detect command:</SubTitle>
       <Button
         title={'Detect'}
         onPress={() => {

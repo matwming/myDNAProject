@@ -23,14 +23,14 @@ export type wellTypes = 'FULL' | 'EMPTY' | 'ERR';
 
 export type WellContainerActions = InitWellAction | FillTargetWellAction;
 
-interface InitWell {
+export interface InitWell {
   verticalUnits: number;
   horizontalUnits: number;
 }
 
 const WellContainerStatus: IWellContainerStatus = {
   verticalUnits: 5,
-  horizontalUnits: 6,
+  horizontalUnits: 5,
   allWellStatus: {
     '0,0': 'EMPTY',
   },
@@ -43,7 +43,9 @@ export enum WellContainerTypes {
 
 export const GetWellInitialStatus = (
   payload: InitWell,
-  additionalInfo: any,
+  additionalInfo?: {
+    [index: string]: string;
+  },
 ): InitWellAction => {
   return {
     type: WellContainerTypes.InitWell,

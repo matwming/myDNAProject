@@ -14,8 +14,8 @@ interface IMoveDirection extends IButtonStatus {
 }
 
 const ViewBtn = styled.View`
-  width: 40px;
-  height: 30px;
+  width: 60px;
+  height: 50px;
   border: 1px solid black;
   color: blue;
   background-color: ${({isPlaced, isNextMovementPermitted}: IButtonStatus) =>

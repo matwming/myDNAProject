@@ -9,19 +9,17 @@ import {
 } from '../../store/reducers/robotReducer/robotReducer';
 import {GlobalState} from '../../store/reducers/rootReducers';
 import MyAlert from '../../UI/Alert';
-type IDirection = 'vertical' | 'horizontal';
+import {Box, SubTitle} from '../../UI/Other';
+import getPickerOptions from '../../utils/getPickerOptions/getOptions';
+
+export type IDirection = 'vertical' | 'horizontal';
+
 const Place = ({isPlaced}: {isPlaced?: boolean}) => {
   const dispatch = useDispatch();
   const {verticalUnits, horizontalUnits} = useSelector(
     (state: GlobalState) => state?.wellContainerStatus,
   );
-  const getOptions = (units: number) =>
-    new Array(units).fill(0).map((el, index: number) => {
-      return {
-        label: String(index),
-        value: String(index),
-      };
-    });
+
   const [currentPosition, setPosition] = useState<IPosition>({
     currentHorizontalPosition: undefined,
     currentVerticalPosition: undefined,
@@ -59,23 +57,28 @@ const Place = ({isPlaced}: {isPlaced?: boolean}) => {
     return dispatch(PlaceRobot(currentPosition));
   };
   return (
-    <View>
+    <View style={{marginTop: 5}}>
+      <SubTitle>1. Place command:</SubTitle>
       <View style={{flexDirection: 'row'}}>
-        <Text>X:</Text>
-        <RNPickerSelect
-          onValueChange={value => {
-            onPickerChangeHandler('horizontal', value);
-          }}
-          items={getOptions(horizontalUnits)}
-        />
+        <Text style={{marginRight: 6, marginTop: 4}}>X:</Text>
+        <Box>
+          <RNPickerSelect
+            onValueChange={value => {
+              onPickerChangeHandler('horizontal', value);
+            }}
+            items={getPickerOptions(horizontalUnits)}
+          />
+        </Box>
       </View>
 
-      <View style={{flexDirection: 'row'}}>
-        <Text>Y:</Text>
-        <RNPickerSelect
-          onValueChange={value => onPickerChangeHandler('vertical', value)}
-          items={getOptions(verticalUnits)}
-        />
+      <View style={{flexDirection: 'row', marginTop: 10}}>
+        <Text style={{marginRight: 6, marginTop: 4}}>Y:</Text>
+        <Box>
+          <RNPickerSelect
+            onValueChange={value => onPickerChangeHandler('vertical', value)}
+            items={getPickerOptions(verticalUnits)}
+          />
+        </Box>
       </View>
       <Button
         title={'Confirm To Place'}

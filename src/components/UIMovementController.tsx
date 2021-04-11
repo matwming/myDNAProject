@@ -7,6 +7,7 @@ import Move from './UIMovementController/Move/Move';
 import Report from './UIMovementController/Report';
 import {useSelector} from 'react-redux';
 import {GlobalState} from '../store/reducers/rootReducers';
+import {MainView, TextElement} from '../UI/Other';
 
 const UIMovementController = () => {
   const {
@@ -18,8 +19,11 @@ const UIMovementController = () => {
     (state: GlobalState) => state?.wellContainerStatus,
   );
   return (
-    <View>
-      <Text>Robot Arms Commands</Text>
+    <View style={{margin: 5}}>
+      <MainView>
+        <TextElement>Robot Arms Commands:</TextElement>
+      </MainView>
+
       <Place isPlaced={isPlaced} />
       <Detect
         currentHorizontalPosition={currentHorizontalPosition}

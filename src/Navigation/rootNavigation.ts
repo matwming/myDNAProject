@@ -1,16 +1,20 @@
+import {createStackNavigator} from 'react-navigation-stack';
+import App from '../screens/App';
+import Settings from '../screens/Settings/Settings';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import { createStackNavigator } from 'react-navigation-stack';
-import App from '../screens/App'
-import About from '../screens/About/About'
-export const rootNavigation = createStackNavigator({
+export const rootNavigation = createBottomTabNavigator(
+  {
     Home: {
-        screen: App,
-        path:'app'
+      screen: App,
+      path: 'app',
     },
-    About: {
-        screen: About,
-        path:'about'
-    }
-}, {
-    initialRouteName:'Home'
-})
+    Settings: {
+      screen: Settings,
+      path: 'settings',
+    },
+  },
+  {
+    initialRouteName: 'Settings',
+  },
+);

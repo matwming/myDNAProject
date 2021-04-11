@@ -75,7 +75,7 @@ const App = () => {
       '1,1': 'FULL',
       '2,2': 'FULL',
     };
-    dispatch(GetWellInitialStatus(wellInitialStatus, additionalWellStatus));
+    dispatch(GetWellInitialStatus(wellInitialStatus));
   }, []);
   return (
     <SafeAreaView style={backgroundStyle}>
