@@ -83,7 +83,18 @@ This is used to fix a bug in this app by creating a bugfix branch with a descrip
 - dev:
 This is a development branch. It will merge bugfix or feature branch pull requests. Once all PRs are merged, testers will do a regression test on it. If it passed the regression test then it is ready to be merged into release branch and waiting to be release.
 
-# 6. Finally, how to run the app?
+# 6. How to run unit tests for this app?
+Redux reducers and utility functions are all unit tested.
+
+Just run the following command in the terminal in the root folder:
+```shell script
+npm run test
+```
+
+There are 5 test suites and are all passed.
+There are 17 tests in total and are all passed.
+
+# 7. Finally, how to run the app?
 - For ios: git clone this repo and go to the root folder and follow these steps:
 1. npm i: install all packages
 2. cd ios: go to ios folder
