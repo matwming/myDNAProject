@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 import uuid from 'react-uuid';
 import {useSelector} from 'react-redux';
 import {GlobalState} from '../store/reducers/rootReducers';
+import {IAppSettings} from '../store/reducers/appSettings/appSettings';
 
 const Container = styled.View`
   padding: 10px;
@@ -20,6 +21,13 @@ const Well = styled.View`
   flex: 1;
   height: 55px;
   margin-right: 5px;
+`;
+
+const WellLabels = styled.Text`
+  margin-left: 10px;
+  margin-top: 3px;
+  display: ${({isShowWellLabels}: IAppSettings) =>
+    isShowWellLabels ? 'flex' : 'none'};
 `;
 
 const UIWellContainer = ({
@@ -40,6 +48,9 @@ const UIWellContainer = ({
   const {allWellStatus} = useSelector(
     (state: GlobalState) => state.wellContainerStatus,
   );
+  const {isShowWellLabels} = useSelector(
+    (state: GlobalState) => state.appSettings,
+  );
   //console.log('robotPosition-place-component', currentRobotPosition);
   const HStack = ({horizontalPosition}: {horizontalPosition: number}) => {
     return (
@@ -57,9 +68,9 @@ const UIWellContainer = ({
                   ? 'lightblue'
                   : 'white'
               }>
-              <Text>
-                {horizontalPosition} , {index}
-              </Text>
+              <WellLabels isShowWellLabels={isShowWellLabels}>
+                {horizontalPosition},{index}
+              </WellLabels>
               <Image
                 source={require('../robot.jpeg')}
                 style={{

@@ -6,6 +6,7 @@ import {
   ScrollView,
   TextInput,
   Button,
+  Switch,
 } from 'react-native';
 import {Box, MainView, SubTitle, TextElement} from '../../UI/Other';
 import RNPickerSelect from 'react-native-picker-select';
@@ -19,6 +20,7 @@ import {
 } from '../../store/reducers/wellContainerReducer/wellContainerReducer';
 import {IDirection} from '../../components/UIMovementController/Place';
 import getRandomWell from '../../utils/getRandomWells/getRandomWells';
+import {ToggleWellLabels} from '../../store/reducers/appSettings/appSettings';
 
 const Settings = () => {
   const onPickerChangeHandler = (direction: IDirection, value: string) => {
@@ -35,7 +37,9 @@ const Settings = () => {
   };
 
   const dispatch = useDispatch();
-
+  const {isShowWellLabels} = useSelector(
+    (state: GlobalState) => state.appSettings,
+  );
   const wellContainerStatus = useSelector(
     (state: GlobalState) => state.wellContainerStatus,
   );
@@ -46,6 +50,10 @@ const Settings = () => {
   });
 
   const [wellsToFill, setWellFill] = useState<string[]>([]);
+
+  const toggleSwitch = () => {
+    dispatch(ToggleWellLabels());
+  };
 
   useEffect(() => {
     setWell({
@@ -142,6 +150,16 @@ const Settings = () => {
                 dispatch(FillTargetWell(wellsToFill[i]));
               }
             }}
+          />
+
+          <SubTitle style={{marginTop: 10}}>
+            3. Toggle the button to show Well labels (show 'x,y' for Wells)
+          </SubTitle>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isShowWellLabels}
           />
         </View>
       </ScrollView>
